@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Arkanoid
@@ -9,7 +8,7 @@ namespace Arkanoid
 
         [SerializeField] private Platform _platform;
         [SerializeField] private Rigidbody2D _rb;
-        [SerializeField] private Vector2 _startVelocity;
+        [SerializeField] private float _constantSpeed;
 
         private bool _isStarted;
         private Vector3 _offset;
@@ -41,14 +40,7 @@ namespace Arkanoid
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
-            if (!_isStarted)
-            {
-                Gizmos.DrawLine(transform.position, transform.position + (Vector3)_startVelocity);
-            }
-            else
-            {
-                Gizmos.DrawLine(transform.position, transform.position + (Vector3)_rb.velocity);
-            }
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)_rb.velocity);
         }
 
         #endregion
@@ -65,7 +57,9 @@ namespace Arkanoid
         private void StartBall()
         {
             _isStarted = true;
-            _rb.velocity = _startVelocity;
+            Vector2 randomDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(0.5f, 1f))
+                .normalized;
+            _rb.velocity = randomDirection * _constantSpeed;
         }
 
         #endregion
