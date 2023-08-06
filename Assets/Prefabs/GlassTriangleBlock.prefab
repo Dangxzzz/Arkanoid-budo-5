@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3984814522491662108}
   - component: {fileID: 5840086618744825005}
   - component: {fileID: 6882527597881130139}
-  - component: {fileID: 8219301389923694585}
+  - component: {fileID: 8519989616541213764}
   m_Layer: 0
   m_Name: GlassTriangleBlock
   m_TagString: Untagged
@@ -46,12 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ffc3018a4627640bbc164a53526ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitToDestroy: 2
-  _scoreForDestroy: 1
-  _scoreLabel: {fileID: 0}
-  _oneHitSprite: {fileID: 21300000, guid: 32cc94d89a1567c4da0930af6a233a6e, type: 3}
-  _twoHitSprite: {fileID: 0}
-  _threeHitSprite: {fileID: 0}
+  _hp: 2
+  _score: 100
+  _sprites:
+  - {fileID: 21300000, guid: 3f733aa6a8a58fd40982862bb3f0a331, type: 3}
+  _spriteRenderer: {fileID: 6882527597881130139}
 --- !u!212 &6882527597881130139
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -104,8 +103,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8219301389923694585
-BoxCollider2D:
+--- !u!60 &8519989616541213764
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,6 +145,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.5, y: 0.5}
+      - {x: -0.5, y: -0.5}
+      - {x: 0.5, y: -0.5}
+      - {x: 0.5, y: -0.42857143}
+      - {x: -0.42857143, y: 0.5}
+    - - {x: -0.3, y: 0.014285714}
+      - {x: 0.014285714, y: -0.3}
+      - {x: -0.2857143, y: -0.2857143}
+  m_UseDelaunayMesh: 0
