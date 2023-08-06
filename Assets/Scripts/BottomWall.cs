@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace Arkanoid
 {
-    public class DownCollider : MonoBehaviour
+    public class BottomWall : MonoBehaviour
     {
         #region Unity lifecycle
 
