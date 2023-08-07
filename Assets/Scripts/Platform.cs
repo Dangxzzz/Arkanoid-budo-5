@@ -17,6 +17,10 @@ namespace Arkanoid
 
         private void MoveWithMouse()
         {
+            if (PauseMenu.IsPausedGame)
+            {
+                return;
+            }
             Vector3 mousePosition = Input.mousePosition;
             Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 

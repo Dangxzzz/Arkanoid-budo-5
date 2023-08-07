@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Arkanoid
 {
@@ -9,7 +8,7 @@ namespace Arkanoid
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameService.Instance.RemoveHealth();
         }
 
         #endregion

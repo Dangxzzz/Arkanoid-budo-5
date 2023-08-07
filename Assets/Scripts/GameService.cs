@@ -1,10 +1,14 @@
+using System;
+
 namespace Arkanoid
 {
     public class GameService : SingletonMonoBehaviour<GameService>
     {
         #region Properties
 
-        public int Score { get; private set; }
+        public event Action OnBallFall;
+        public int Score { get; set; }
+        public int RemovedHealth { get; set; }
 
         #endregion
 
@@ -41,6 +45,12 @@ namespace Arkanoid
         private void OnAllBlocksDestroyed()
         {
             LoadNextLevel();
+        }
+
+        public void RemoveHealth()
+        {
+            RemovedHealth++;
+            OnBallFall?.Invoke();
         }
 
         #endregion
