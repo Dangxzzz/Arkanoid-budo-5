@@ -36,6 +36,11 @@ namespace Arkanoid
             SetInitHealth();
             LevelService.Instance.OnAllBlocksDestroyed += OnAllBlocksDestroyed;
         }
+        
+        public void ChangeScore(int value)
+        {
+            Score = Mathf.Max(0, Score + value);
+        }
 
         private void OnDestroy()
         {
@@ -82,7 +87,7 @@ namespace Arkanoid
             LoadNextLevel();
         }
 
-        private void ResetBall()
+        public void ResetBall()
         {
             FindObjectOfType<Ball>().ResetBall();
         }

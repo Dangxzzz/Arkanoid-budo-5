@@ -2201,14 +2201,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
-    - target: {fileID: 4108475193265701825, guid: d272cbabc8c775c43800945d7888a402, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4108475193265701825, guid: d272cbabc8c775c43800945d7888a402, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 75460613
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2770,34 +2762,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5218605412493887405, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5218605412493887405, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 75460613
-      objectReference: {fileID: 0}
-    - target: {fileID: 5267997810271629729, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7335055087474600046, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
       propertyPath: _platform
       value: 
       objectReference: {fileID: 837033574}
-    - target: {fileID: 7335055087474600046, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-      propertyPath: _constantSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7335055087474600046, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-      propertyPath: _startVelocity.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7335055087474600046, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-      propertyPath: _startVelocity.y
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7626061194183852341, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3896,6 +3864,10 @@ PrefabInstance:
     - target: {fileID: 1296743544853652086, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
       propertyPath: _startHP
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296743544853652086, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
+      propertyPath: _needAutoPlay
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5014665546375797854, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
       propertyPath: m_Name
