@@ -7,62 +7,41 @@ namespace Arkanoid
     {
         #region Variables
 
-        public static bool IsPausedGame;
-
-        [SerializeField] private GameObject _pauseMenuUI;
-        [SerializeField] private Button _mainMenuButton;
-        [SerializeField] private Button _resumeButton;
+        [SerializeField] private GameObject _contentObject;
+        [SerializeField] private Button _continueButton;
 
         #endregion
 
         #region Unity lifecycle
 
-        private void Start()
+        private void Awake()
         {
-            IsPausedGame = false;
-            Time.timeScale = 1;
-            _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
-            _resumeButton.onClick.AddListener(OnResumeButtonClick);
+            _contentObject.SetActive(false);
+            _continueButton.onClick.AddListener(OnContinueButtonClicked);
         }
 
-        private void Update()
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (IsPausedGame)
-                {
-                    Resume();
-                }
-                else
-                {
-                    OpenPauseMenu();
-                }
-            }
+            PauseService.Instance.OnPaused += OnPaused;
+        }
+
+        private void OnDestroy()
+        {
+            PauseService.Instance.OnPaused -= OnPaused;
         }
 
         #endregion
 
         #region Private methods
 
-        private void OnMainMenuButtonClick() { }
-
-        private void OnResumeButtonClick()
+        private void OnContinueButtonClicked()
         {
-            Resume();
+            PauseService.Instance.TogglePause();
         }
 
-        private void OpenPauseMenu()
+        private void OnPaused(bool isPaused)
         {
-            _pauseMenuUI.gameObject.SetActive(true);
-            Time.timeScale = 0f;
-            IsPausedGame = true;
-        }
-
-        private void Resume()
-        {
-            _pauseMenuUI.gameObject.SetActive(false);
-            Time.timeScale = 1f;
-            IsPausedGame= false;
+            _contentObject.SetActive(isPaused);
         }
 
         #endregion

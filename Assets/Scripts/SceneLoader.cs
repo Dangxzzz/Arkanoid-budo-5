@@ -12,6 +12,11 @@ namespace Arkanoid
             SceneManager.LoadScene(nextSceneIndex);
         }
 
+        public void ReloadCurrentScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         #endregion
     }
 }

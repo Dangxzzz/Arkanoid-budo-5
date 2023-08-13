@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Arkanoid
@@ -22,12 +20,6 @@ namespace Arkanoid
         private void Start()
         {
             _offset = transform.position - _platform.transform.position;
-            GameService.Instance.OnBallFall += SetStartSettingsForBall;
-        }
-
-        private void OnDestroy()
-        {
-            GameService.Instance.OnBallFall -= SetStartSettingsForBall;
         }
 
         private void Update()
@@ -37,24 +29,28 @@ namespace Arkanoid
                 return;
             }
 
-            SetStartSettingsForBall();
-        }
-
-        private void SetStartSettingsForBall()
-        {
             MoveWithPad();
 
             if (Input.GetMouseButtonDown(0))
             {
                 StartBall();
             }
-            
         }
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(transform.position, transform.position + (Vector3)_rb.velocity);
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public void ResetBall()
+        {
+            _isStarted = false;
+            _rb.velocity = Vector2.zero;
         }
 
         #endregion

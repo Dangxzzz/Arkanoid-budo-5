@@ -8,7 +8,7 @@ namespace Arkanoid
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            GameService.Instance.RemoveHealth();
+            GameService.Instance.DecrementHP();
         }
 
         #endregion

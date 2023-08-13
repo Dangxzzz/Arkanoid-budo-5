@@ -1,14 +1,27 @@
 using System;
+using UnityEngine;
 
 namespace Arkanoid
 {
     public class GameService : SingletonMonoBehaviour<GameService>
     {
+        #region Variables
+
+        [SerializeField] private int _startHP;
+
+        #endregion
+
+        #region Events
+
+        public event Action<int> OnHPChanged;
+        public event Action OnHPOver;
+
+        #endregion
+
         #region Properties
 
-        public event Action OnBallFall;
+        public int Health { get; private set; }
         public int Score { get; set; }
-        public int RemovedHealth { get; set; }
 
         #endregion
 
@@ -16,6 +29,7 @@ namespace Arkanoid
 
         private void Start()
         {
+            SetInitHealth();
             LevelService.Instance.OnAllBlocksDestroyed += OnAllBlocksDestroyed;
         }
 
@@ -33,6 +47,23 @@ namespace Arkanoid
             Score += value;
         }
 
+        public void DecrementHP()
+        {
+            Health--;
+            ResetBall();
+            OnHPChanged?.Invoke(Health);
+            if (Health <= 0)
+            {
+                OnHPOver?.Invoke();
+            }
+        }
+
+        public void SetStartParameters()
+        {
+            SetInitHealth();
+            Score = 0;
+        }
+
         #endregion
 
         #region Private methods
@@ -47,10 +78,15 @@ namespace Arkanoid
             LoadNextLevel();
         }
 
-        public void RemoveHealth()
+        private void ResetBall()
         {
-            RemovedHealth++;
-            OnBallFall?.Invoke();
+            FindObjectOfType<Ball>().ResetBall();
+        }
+
+        private void SetInitHealth()
+        {
+            Health = _startHP;
+            OnHPChanged?.Invoke(Health);
         }
 
         #endregion
