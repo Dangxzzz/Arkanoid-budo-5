@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3987512916326040662}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c7d87c7440c84ea266e26d0c37287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _platform: {fileID: 6160641997198088991, guid: d272cbabc8c775c43800945d7888a402, type: 3}
+  _platform: {fileID: 0}
   _rb: {fileID: 5267997810271629729}
-  _startVelocity: {x: 0, y: 3}
+  _constantSpeed: 10
 --- !u!212 &5218605412493887405
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,8 +88,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 75460613
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7871e4c952ef4c4881747d98056d1c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 8e109e8d40d972d4eae5eea3910ce786, type: 2}
   m_IncludeLayers:
     serializedVersion: 2

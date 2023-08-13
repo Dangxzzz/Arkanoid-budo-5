@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9203236437355100778}
+  - component: {fileID: 8281319637053180636}
   - component: {fileID: 7330686974992982818}
   - component: {fileID: 6499660330721286494}
-  - component: {fileID: 8281319637053180636}
   m_Layer: 0
   m_Name: InvisibleBlock
   m_TagString: Untagged
@@ -34,6 +34,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8281319637053180636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590794202887442996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ffc3018a4627640bbc164a53526ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 7330686974992982818}
+  _hp: 3
+  _score: 400
+  _isInvisible: 1
+  _sprites:
+  - {fileID: 21300000, guid: a5c163aab39cbbb4cb3aa837d3eb10aa, type: 3}
+  - {fileID: 21300000, guid: 76934f77ddd51f94a9f5bffe79fe9590, type: 3}
+  _pickUpDropChance: 100
+  _pickUpPrefab: {fileID: 9048886769428240704, guid: d5b4080cec0415d4fb09e56942947a8f, type: 3}
 --- !u!212 &7330686974992982818
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,22 +152,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8281319637053180636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3590794202887442996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81ffc3018a4627640bbc164a53526ec4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 7330686974992982818}
-  _hp: 3
-  _score: 400
-  _isInvisible: 1
-  _sprites:
-  - {fileID: 21300000, guid: a5c163aab39cbbb4cb3aa837d3eb10aa, type: 3}
-  - {fileID: 21300000, guid: 76934f77ddd51f94a9f5bffe79fe9590, type: 3}
