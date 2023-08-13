@@ -7,6 +7,9 @@ namespace Arkanoid
     {
         #region Variables
 
+        [Header("Auto Play")]
+        [SerializeField] private bool _needAutoPlay;
+        [Header("Configs")]
         [SerializeField] private int _startHP;
 
         #endregion
@@ -21,6 +24,7 @@ namespace Arkanoid
         #region Properties
 
         public int Health { get; private set; }
+        public bool NeedAutoPlay => _needAutoPlay;
         public int Score { get; set; }
 
         #endregion
