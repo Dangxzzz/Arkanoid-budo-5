@@ -20,7 +20,7 @@ namespace Arkanoid
         [Header("Pick Up")]
         [Range(0, 100)]
         [SerializeField] private int _pickUpDropChance = 50;
-        [SerializeField] private PickUp _pickUpPrefab;
+        [SerializeField] private PickUp[] _pickUpPrefabs;
 
         private int _hits;
 
@@ -85,7 +85,8 @@ namespace Arkanoid
             int chance = Random.Range(0, 101);
             if (_pickUpDropChance >= chance)
             {
-                Instantiate(_pickUpPrefab, transform.position, Quaternion.identity);
+                int chanseOfPickUp = Random.Range(0, 12);
+                Instantiate(_pickUpPrefabs[chanseOfPickUp], transform.position, Quaternion.identity);
             }
         }
 

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Arkanoid
 {
@@ -6,20 +8,27 @@ namespace Arkanoid
     {
         #region Variables
 
-        [SerializeField] private Platform _platform;
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private float _constantSpeed;
 
         private bool _isStarted;
         private Vector3 _offset;
+        private int _offsetY = 1;
+
+        private Platform _platform;
 
         #endregion
 
         #region Unity lifecycle
 
+        private void Awake()
+        {
+            _platform = FindObjectOfType<Platform>();
+        }
+
         private void Start()
         {
-            _offset = transform.position - _platform.transform.position;
+            _offset.y = _offsetY;
         }
 
         private void Update()
@@ -53,6 +62,20 @@ namespace Arkanoid
             _rb.velocity = Vector2.zero;
         }
 
+        public void SetNewSpeed(float speedIncrease)
+        {
+            Vector2 currentVelocity = _rb.velocity;
+            _rb.velocity = currentVelocity * speedIncrease;
+        }
+
+        public void StartBall()
+        {
+            _isStarted = true;
+            Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(0.5f, 1f))
+                .normalized;
+            _rb.velocity = randomDirection * _constantSpeed;
+        }
+
         #endregion
 
         #region Private methods
@@ -60,16 +83,8 @@ namespace Arkanoid
         private void MoveWithPad()
         {
             Vector3 platformPosition = _platform.transform.position;
-            platformPosition += _offset;
+            platformPosition +=_offset;
             transform.position = platformPosition;
-        }
-
-        private void StartBall()
-        {
-            _isStarted = true;
-            Vector2 randomDirection = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(0.5f, 1f))
-                .normalized;
-            _rb.velocity = randomDirection * _constantSpeed;
         }
 
         #endregion

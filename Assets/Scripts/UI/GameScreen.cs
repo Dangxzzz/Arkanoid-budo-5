@@ -22,6 +22,7 @@ namespace Arkanoid
             CreateHealth();
             UpdateHealthPoint(GameService.Instance.Health);
             GameService.Instance.OnHPChanged += UpdateHealthPoint;
+            GameService.Instance.OnCatchHpPickUp += AddHealth;
         }
 
         private void Update()
@@ -32,18 +33,24 @@ namespace Arkanoid
         private void OnDestroy()
         {
             GameService.Instance.OnHPChanged -= UpdateHealthPoint;
+            GameService.Instance.OnCatchHpPickUp -= AddHealth;
         }
 
         #endregion
 
         #region Private methods
 
+        private void AddHealth()
+        {
+            GameObject instance = Instantiate(_healthPrefab, _healthParentTransform);
+            _healthPoints.Add(instance);
+        }
+
         private void CreateHealth()
         {
             for (int i = 0; i < GameService.Instance.Health; i++)
             {
-                GameObject instance = Instantiate(_healthPrefab, _healthParentTransform);
-                _healthPoints.Add(instance);
+                AddHealth();
             }
         }
 

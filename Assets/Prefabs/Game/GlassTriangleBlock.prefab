@@ -46,11 +46,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ffc3018a4627640bbc164a53526ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 6882527597881130139}
   _hp: 2
   _score: 100
+  _isInvisible: 0
   _sprites:
   - {fileID: 21300000, guid: 3f733aa6a8a58fd40982862bb3f0a331, type: 3}
-  _spriteRenderer: {fileID: 6882527597881130139}
+  _pickUpDropChance: 50
+  _pickUpPrefabs:
+  - {fileID: 2622656421353346063, guid: 090a679906b82a74097a30a691d86f1d, type: 3}
+  - {fileID: 7675054251206625322, guid: cf35c6c9f575b584a90a7fa744ef72b6, type: 3}
+  - {fileID: 6526721892291818254, guid: 5ed773391bd1c7a4d9cf1964d6c4e04f, type: 3}
+  - {fileID: 992226728553499861, guid: 229a1facc2e740948866a51ef6e44967, type: 3}
+  - {fileID: 5820166443526499954, guid: 45243e6064bd3ac4fbce6c979ee48498, type: 3}
+  - {fileID: 3885717264831525281, guid: 46303ce1d2104794b9a12cb35995e60b, type: 3}
+  - {fileID: 1368117641562354036, guid: 2c06edc5a6a03e547817e9b5c4524f9a, type: 3}
+  - {fileID: 2315914039788176084, guid: ef46a57e57d90a54b8f54344c89f6fcc, type: 3}
+  - {fileID: 3955931374254407614, guid: 367050d74aecd19488147ed7ea3d9f69, type: 3}
+  - {fileID: 5446924561123841186, guid: 5e6fb58cde402fb4a95ea46ed0771755, type: 3}
+  - {fileID: 6760171811492573447, guid: fd2fd98c4bf2b9a4797e67b52cfdc42c, type: 3}
+  - {fileID: 9048886769428240704, guid: d5b4080cec0415d4fb09e56942947a8f, type: 3}
 --- !u!212 &6882527597881130139
 SpriteRenderer:
   m_ObjectHideFlags: 0

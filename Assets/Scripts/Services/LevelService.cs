@@ -8,6 +8,8 @@ namespace Arkanoid
 
         public event Action OnAllBlocksDestroyed;
 
+        public event Action<bool> OnAllBallsDestroyed;
+
         #endregion
 
         #region Unity lifecycle
@@ -19,6 +21,14 @@ namespace Arkanoid
             {
                 OnAllBlocksDestroyed?.Invoke();
             }
+            if (IsOneAliveBall())
+            {
+                OnAllBallsDestroyed?.Invoke(true);
+            }
+            else
+            {
+                OnAllBallsDestroyed?.Invoke(false);
+            }
         }
 
         #endregion
@@ -28,6 +38,23 @@ namespace Arkanoid
         private Block[] GetAllAliveBlocks()
         {
             return FindObjectsOfType<Block>();
+        }
+
+        public Ball[] GetAllBalls()
+        {
+            return FindObjectsOfType<Ball>();
+        }
+        public bool IsOneAliveBall()
+        {
+            Ball[] balls = GetAllBalls();
+           if (balls.Length ==1)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
         }
 
         #endregion

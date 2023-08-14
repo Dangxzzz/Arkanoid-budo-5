@@ -4,5 +4,6 @@ namespace Arkanoid
     {
         public const string Platform = "Platform";
         public const string Ball = "Ball";
+        public const string BallContainer = "BallContainer";
     }
 }
