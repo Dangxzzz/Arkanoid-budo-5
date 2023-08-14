@@ -2,8 +2,12 @@ namespace Arkanoid
 {
     public static class Tags
     {
-        public const string Platform = "Platform";
+        #region Variables
+
         public const string Ball = "Ball";
         public const string BallContainer = "BallContainer";
+        public const string Platform = "Platform";
+
+        #endregion
     }
 }

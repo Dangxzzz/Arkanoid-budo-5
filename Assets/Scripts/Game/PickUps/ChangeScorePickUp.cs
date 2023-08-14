@@ -7,7 +7,7 @@ namespace Arkanoid
     {
         #region Variables
 
-        [SerializeField] private int _scoreToChange = 10;
+        [SerializeField] private int _scoreToChange;
 
         #endregion
 

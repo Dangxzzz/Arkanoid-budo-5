@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Arkanoid
 {
@@ -13,7 +11,7 @@ namespace Arkanoid
 
         private bool _isStarted;
         private Vector3 _offset;
-        private int _offsetY = 1;
+        private readonly int _offsetY = 1;
 
         private Platform _platform;
 
@@ -83,7 +81,7 @@ namespace Arkanoid
         private void MoveWithPad()
         {
             Vector3 platformPosition = _platform.transform.position;
-            platformPosition +=_offset;
+            platformPosition += _offset;
             transform.position = platformPosition;
         }
 
