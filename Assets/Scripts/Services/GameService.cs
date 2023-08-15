@@ -10,7 +10,7 @@ namespace Arkanoid
         [Header("Auto Play")]
         [SerializeField] private bool _needAutoPlay;
         [Header("Configs")]
-        [SerializeField] private int _startHP;
+        [SerializeField] private int _startHP=3;
         [SerializeField] private Ball _prefabBall;
 
         #endregion
@@ -34,9 +34,13 @@ namespace Arkanoid
 
         #region Unity lifecycle
 
-        private void Start()
+        private void OnEnable()
         {
             SetInitHealth();
+        }
+
+        private void Start()
+        {
             LevelService.Instance.OnAllBlocksDestroyed += OnAllBlocksDestroyed;
         }
 
@@ -106,6 +110,7 @@ namespace Arkanoid
         {
             Ball BallIngame = FindGameBall();
             Ball newBall = Instantiate(_prefabBall, BallIngame.transform.position, Quaternion.identity);
+            newBall.transform.localScale = BallIngame.transform.localScale;
             newBall.StartBall();
         }
 
@@ -143,6 +148,7 @@ namespace Arkanoid
         private void SetInitHealth()
         {
             Health = _startHP;
+            Debug.Log($"GameService startHP{Health}");
             OnHPChanged?.Invoke(Health);
         }
 

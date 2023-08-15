@@ -44,12 +44,15 @@ namespace Arkanoid
         {
             GameObject instance = Instantiate(_healthPrefab, _healthParentTransform);
             _healthPoints.Add(instance);
+            Debug.Log("CreateHp");
         }
 
         private void CreateHealth()
         {
+            Debug.Log($"StartHp{GameService.Instance.Health}");
             for (int i = 0; i < GameService.Instance.Health; i++)
             {
+                Debug.Log("CreateHP");
                 AddHealth();
             }
         }

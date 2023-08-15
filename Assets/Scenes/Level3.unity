@@ -3865,18 +3865,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1296743544853652086, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
-      propertyPath: _startHP
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1296743544853652086, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
-      propertyPath: _prefabBall
-      value: 
-      objectReference: {fileID: 7335055087474600046, guid: f1f80be775160ce4e8f1502bf79447b1, type: 3}
-    - target: {fileID: 1296743544853652086, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
-      propertyPath: _needAutoPlay
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5014665546375797854, guid: 5b617a5bbdaa2ac4f9b2b618e5a232a4, type: 3}
       propertyPath: m_Name
       value: GameServices
