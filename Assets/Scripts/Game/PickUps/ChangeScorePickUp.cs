@@ -1,7 +1,7 @@
-
+using Arkanoid.Services;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game.PickUps
 {
     public class IncreaseScorePickUp : PickUp
     {

@@ -1,6 +1,8 @@
+using Arkanoid.Game.PickUps;
+using Arkanoid.Services;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game
 {
     public class Block : MonoBehaviour
     {
@@ -82,11 +84,15 @@ namespace Arkanoid
 
         private void CreatePickUp()
         {
+            if (_pickUpPrefabs.Length == 0)
+            {
+                return;
+            }
             int chance = Random.Range(0, 101);
             if (_pickUpDropChance >= chance)
             {
-                int chanseOfPickUp = Random.Range(0, 12);
-                Instantiate(_pickUpPrefabs[chanseOfPickUp], transform.position, Quaternion.identity);
+                int chanceOfPickUp = Random.Range(0, _pickUpPrefabs.Length);
+                Instantiate(_pickUpPrefabs[chanceOfPickUp], transform.position, Quaternion.identity);
             }
         }
 

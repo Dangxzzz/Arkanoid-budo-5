@@ -1,16 +1,11 @@
+using Arkanoid.Services;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game
 {
     [RequireComponent(typeof(Collider2D))]
     public class BottomWall : MonoBehaviour
     {
-        #region Variables
-
-        private bool _isLastBall;
-
-        #endregion
-
         #region Unity lifecycle
 
         private void Awake()
@@ -18,23 +13,15 @@ namespace Arkanoid
             GetComponent<Collider2D>().isTrigger = true;
         }
 
-        private void Start()
-        {
-            LevelService.Instance.OnAllBallsDestroyed += IsLastBall;
-        }
-
-        private void OnDestroy()
-        {
-            LevelService.Instance.OnAllBallsDestroyed -= IsLastBall;
-        }
-
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag(Tags.Ball))
             {
-                if (_isLastBall)
+                Ball[] allBalls = LevelService.Instance.GetAllBalls();
+                bool isLast = allBalls.Length == 1;
+                if (isLast)
                 {
-                    GameService.Instance.DecrementHP();
+                    GameService.Instance.ChangeHP(-1);
                     GameService.Instance.ResetBall();
                 }
                 else
@@ -46,15 +33,6 @@ namespace Arkanoid
             {
                 Destroy(other.gameObject);
             }
-        }
-
-        #endregion
-
-        #region Public methods
-
-        public void IsLastBall(bool isLast)
-        {
-            _isLastBall = isLast;
         }
 
         #endregion

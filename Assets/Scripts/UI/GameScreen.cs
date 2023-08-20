@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Arkanoid.Services;
 using TMPro;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.UI
 {
     public class GameScreen : MonoBehaviour
     {
@@ -22,7 +23,7 @@ namespace Arkanoid
             CreateHealth();
             UpdateHealthPoint(GameService.Instance.Health);
             GameService.Instance.OnHPChanged += UpdateHealthPoint;
-            GameService.Instance.OnCatchHpPickUp += AddHealth;
+
         }
 
         private void Update()
@@ -33,7 +34,6 @@ namespace Arkanoid
         private void OnDestroy()
         {
             GameService.Instance.OnHPChanged -= UpdateHealthPoint;
-            GameService.Instance.OnCatchHpPickUp -= AddHealth;
         }
 
         #endregion
@@ -44,21 +44,30 @@ namespace Arkanoid
         {
             GameObject instance = Instantiate(_healthPrefab, _healthParentTransform);
             _healthPoints.Add(instance);
-            Debug.Log("CreateHp");
+        }
+
+        private void AddHealth(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                AddHealth();
+            }
         }
 
         private void CreateHealth()
         {
-            Debug.Log($"StartHp{GameService.Instance.Health}");
             for (int i = 0; i < GameService.Instance.Health; i++)
             {
-                Debug.Log("CreateHP");
                 AddHealth();
             }
         }
 
         private void UpdateHealthPoint(int hp)
         {
+            if (_healthPoints.Count < hp)
+            {
+                AddHealth(_healthPoints.Count-hp);
+            }
             for (int i = 0; i < _healthPoints.Count; i++)
             {
                 _healthPoints[i].gameObject.SetActive(hp > i);

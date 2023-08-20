@@ -1,12 +1,14 @@
+using Arkanoid.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Arkanoid
+namespace Arkanoid.Game.PickUps
 {
     public class ChangeBallSizePickUp : PickUp
     {
         #region Variables
 
-        [SerializeField] private float _scaleToChange;
+        [SerializeField] private float _sizeMultiplier;
 
         #endregion
 
@@ -15,7 +17,11 @@ namespace Arkanoid
         protected override void PerformActions()
         {
             base.PerformActions();
-            GameService.Instance.ChangeBallSize(_scaleToChange);
+            Ball[] ballsInGame = LevelService.Instance.GetAllBalls();
+            for (int i = 0; i < ballsInGame.Length; i++)
+            {
+                ballsInGame[i].ChangeSize(_sizeMultiplier);
+            }
         }
 
         #endregion

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game.PickUps
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public abstract class PickUp : MonoBehaviour
@@ -22,8 +22,6 @@ namespace Arkanoid
 
         protected virtual void PerformActions()
         {
-            // TODO: Show vfx
-            // TODO: PLay sfx
         }
 
         #endregion

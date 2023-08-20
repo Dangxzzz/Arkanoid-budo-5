@@ -1,9 +1,15 @@
+using Arkanoid.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Arkanoid
+namespace Arkanoid.Game
 {
     public class Platform : MonoBehaviour
     {
+        
+        [SerializeField] private float _maxPlatformSize=2.5f;
+        [SerializeField] private float _minPlatformSize = 0.45f;
+            
         #region Unity lifecycle
 
         private void Update()
@@ -31,6 +37,19 @@ namespace Arkanoid
         {
             Vector3 ballPosition = FindObjectOfType<Ball>().transform.position;
             SetPosition(ballPosition);
+        }
+
+        public void ChangePlatformSize(float sizeMultiplier)
+        {
+            Vector3 currentSize = transform.localScale;
+            if (currentSize.x >= _maxPlatformSize || currentSize.x<=_minPlatformSize)
+            {
+                return;
+            }
+            float newScaleX = currentSize.x * sizeMultiplier;
+            Vector3 newScale = transform.localScale;
+            newScale.x = newScaleX;
+            transform.localScale = newScale;
         }
 
         private void MoveWithMouse()

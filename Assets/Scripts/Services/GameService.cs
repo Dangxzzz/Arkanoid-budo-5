@@ -1,7 +1,8 @@
 using System;
+using Arkanoid.Game;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Services
 {
     public class GameService : SingletonMonoBehaviour<GameService>
     {
@@ -10,14 +11,11 @@ namespace Arkanoid
         [Header("Auto Play")]
         [SerializeField] private bool _needAutoPlay;
         [Header("Configs")]
-        [SerializeField] private int _startHP=3;
-        [SerializeField] private Ball _prefabBall;
+        [SerializeField] private int _startHP = 3;
 
         #endregion
 
         #region Events
-
-        public event Action OnCatchHpPickUp;
 
         public event Action<int> OnHPChanged;
         public event Action OnHPOver;
@@ -34,13 +32,9 @@ namespace Arkanoid
 
         #region Unity lifecycle
 
-        private void OnEnable()
-        {
-            SetInitHealth();
-        }
-
         private void Start()
         {
+            SetInitHealth();
             LevelService.Instance.OnAllBlocksDestroyed += OnAllBlocksDestroyed;
         }
 
@@ -53,52 +47,9 @@ namespace Arkanoid
 
         #region Public methods
 
-        public void ChangeBallSize(float scaleToChange)
+        public void ChangeHP(int count)
         {
-            Ball[] BallsInGame = LevelService.Instance.GetAllBalls();
-            for (int i = 0; i < BallsInGame.Length; i++)
-            {
-                BallsInGame[i].transform.localScale += new Vector3(scaleToChange, scaleToChange);
-            }
-        }
-
-        public void ChangeBallSpeed(float speedMultiplier)
-        {
-            Ball[] BallsInGame = LevelService.Instance.GetAllBalls();
-            for (int i = 0; i < BallsInGame.Length; i++)
-            {
-                BallsInGame[i].SetNewSpeed(speedMultiplier);
-            }
-        }
-
-        public void ChangeHP(bool IsDesreasedHp)
-        {
-            if (IsDesreasedHp)
-            {
-                DecrementHP();
-            }
-            else
-            {
-                Health++;
-                OnCatchHpPickUp?.Invoke();
-            }
-        }
-
-        public void ChangePlatformSize(float scaleToChange)
-        {
-            Platform PlatformInGame = FindObjectOfType<Platform>();
-            PlatformInGame.transform.localScale += new Vector3(scaleToChange, 0);
-        }
-
-        public void ChangeScore(int value)
-        {
-            Score = Mathf.Max(0, Score + value);
-        }
-
-        public void DecrementHP()
-        {
-            Health--;
-            ResetBall();
+            Health = Mathf.Max(0, Health += count);
             OnHPChanged?.Invoke(Health);
             if (Health <= 0)
             {
@@ -106,12 +57,9 @@ namespace Arkanoid
             }
         }
 
-        public void DoublingBalls()
+        public void ChangeScore(int value)
         {
-            Ball BallIngame = FindGameBall();
-            Ball newBall = Instantiate(_prefabBall, BallIngame.transform.position, Quaternion.identity);
-            newBall.transform.localScale = BallIngame.transform.localScale;
-            newBall.StartBall();
+            Score = Mathf.Max(0, Score + value);
         }
 
         public void ResetBall()
@@ -128,12 +76,6 @@ namespace Arkanoid
         #endregion
 
         #region Private methods
-
-        private Ball FindGameBall()
-        {
-            Ball BallInGame = FindObjectOfType<Ball>();
-            return BallInGame;
-        }
 
         private void LoadNextLevel()
         {

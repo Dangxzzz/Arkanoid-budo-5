@@ -1,4 +1,6 @@
-namespace Arkanoid
+using Arkanoid.Services;
+
+namespace Arkanoid.Game.PickUps
 {
     public class CatchBallPickUp: PickUp
     {

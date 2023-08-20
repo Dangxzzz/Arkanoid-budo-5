@@ -1,10 +1,11 @@
+using Arkanoid.Services;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game.PickUps
 {
     public class IncreaseHpPickUp : PickUp
     {
-        [SerializeField] private bool _isDecrementHp;
+        [SerializeField] private int _count;
         
         #region Protected methods
 
@@ -12,7 +13,7 @@ namespace Arkanoid
         {
             base.PerformActions();
 
-            GameService.Instance.ChangeHP(_isDecrementHp);
+            GameService.Instance.ChangeHP(_count);
         }
 
         #endregion

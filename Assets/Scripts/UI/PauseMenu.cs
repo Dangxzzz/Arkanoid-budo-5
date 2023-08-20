@@ -1,7 +1,8 @@
+using Arkanoid.Services;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Arkanoid
+namespace Arkanoid.UI
 {
     public class PauseMenu : MonoBehaviour
     {

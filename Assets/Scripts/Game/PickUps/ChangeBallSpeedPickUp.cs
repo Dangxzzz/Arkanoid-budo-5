@@ -1,12 +1,13 @@
+using Arkanoid.Services;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game.PickUps
 {
     public class ChangeBallSpeedPickUp : PickUp
     {
         #region Variables
 
-        [SerializeField] private float _speedMultipier;
+        [SerializeField] private float _speedMultiplier;
 
         #endregion
 
@@ -15,8 +16,13 @@ namespace Arkanoid
         protected override void PerformActions()
         {
             base.PerformActions();
+            Ball[] ballsInGame = LevelService.Instance.GetAllBalls();
+            for (int i = 0; i < ballsInGame.Length; i++)
+            {
+                ballsInGame[i].ChangeSpeed(_speedMultiplier);
+            }
 
-            GameService.Instance.ChangeBallSpeed(_speedMultipier);
+         
         }
 
         #endregion

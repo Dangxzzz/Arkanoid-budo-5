@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game
 {
     public class Ball : MonoBehaviour
     {
@@ -12,6 +12,10 @@ namespace Arkanoid
         private bool _isStarted;
         private Vector3 _offset;
         private readonly int _offsetY = 1;
+        [SerializeField] private float _maxScaleBall=2.5f;
+        [SerializeField] private float _minScaleBall=0.45f;
+        [SerializeField] private float _maxSpeedBall=18;
+        [SerializeField] private float _minSpeedBall=4;
 
         private Platform _platform;
 
@@ -60,10 +64,24 @@ namespace Arkanoid
             _rb.velocity = Vector2.zero;
         }
 
-        public void SetNewSpeed(float speedIncrease)
+        public void ChangeSpeed(float speedMultiplier)
         {
             Vector2 currentVelocity = _rb.velocity;
-            _rb.velocity = currentVelocity * speedIncrease;
+            if (currentVelocity.magnitude >= _maxSpeedBall || currentVelocity.magnitude<=_minSpeedBall)
+            {
+                return;
+            }
+            _rb.velocity = currentVelocity * speedMultiplier;
+        }
+
+        public void ChangeSize(float sizeMultiplier)
+        {
+            Vector3 currentSize = transform.localScale;
+            if (currentSize.x >= _maxScaleBall || currentSize.x<=_minScaleBall)
+            {
+                return;
+            }
+            transform.localScale = currentSize*sizeMultiplier;
         }
 
         public void StartBall()

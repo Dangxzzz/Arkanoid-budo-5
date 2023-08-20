@@ -1,12 +1,13 @@
+using Arkanoid.Services;
 using UnityEngine;
 
-namespace Arkanoid
+namespace Arkanoid.Game.PickUps
 {
     public class ChangePlatformSizePickUp : PickUp
     {
         #region Variables
 
-        [SerializeField] private float _scaleToChange;
+        [SerializeField] private float _sizeMultiplier;
 
         #endregion
 
@@ -15,8 +16,9 @@ namespace Arkanoid
         protected override void PerformActions()
         {
             base.PerformActions();
-
-            GameService.Instance.ChangePlatformSize(_scaleToChange);
+            
+            Platform platformInGame = FindObjectOfType<Platform>();
+            platformInGame.ChangePlatformSize(_sizeMultiplier);
         }
 
         #endregion

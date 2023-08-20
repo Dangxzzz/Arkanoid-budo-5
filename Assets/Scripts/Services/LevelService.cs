@@ -1,14 +1,13 @@
 using System;
+using Arkanoid.Game;
 
-namespace Arkanoid
+namespace Arkanoid.Services
 {
     public class LevelService : SingletonMonoBehaviour<LevelService>
     {
         #region Events
 
         public event Action OnAllBlocksDestroyed;
-
-        public event Action<bool> OnAllBallsDestroyed;
 
         #endregion
 
@@ -21,14 +20,15 @@ namespace Arkanoid
             {
                 OnAllBlocksDestroyed?.Invoke();
             }
-            if (IsOneAliveBall())
-            {
-                OnAllBallsDestroyed?.Invoke(true);
-            }
-            else
-            {
-                OnAllBallsDestroyed?.Invoke(false);
-            }
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public Ball[] GetAllBalls()
+        {
+            return FindObjectsOfType<Ball>();
         }
 
         #endregion
@@ -38,23 +38,6 @@ namespace Arkanoid
         private Block[] GetAllAliveBlocks()
         {
             return FindObjectsOfType<Block>();
-        }
-
-        public Ball[] GetAllBalls()
-        {
-            return FindObjectsOfType<Ball>();
-        }
-        public bool IsOneAliveBall()
-        {
-            Ball[] balls = GetAllBalls();
-           if (balls.Length ==1)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
         }
 
         #endregion
