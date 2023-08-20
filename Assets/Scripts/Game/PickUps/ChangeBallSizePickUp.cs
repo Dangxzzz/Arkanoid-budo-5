@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Arkanoid.Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Arkanoid.Game.PickUps
 {
@@ -17,10 +17,10 @@ namespace Arkanoid.Game.PickUps
         protected override void PerformActions()
         {
             base.PerformActions();
-            Ball[] ballsInGame = LevelService.Instance.GetAllBalls();
-            for (int i = 0; i < ballsInGame.Length; i++)
+            List<Ball> allBalls = LevelService.Instance.Balls;
+            for (int i = 0; i < allBalls.Count; i++)
             {
-                ballsInGame[i].ChangeSize(_sizeMultiplier);
+                allBalls[i].ChangeSize(_sizeMultiplier);
             }
         }
 

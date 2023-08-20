@@ -1,6 +1,7 @@
 using Arkanoid.Game.PickUps;
 using Arkanoid.Services;
 using UnityEngine;
+using System;
 
 namespace Arkanoid.Game
 {
@@ -19,6 +20,9 @@ namespace Arkanoid.Game
         [Header("Visual")]
         [SerializeField] private Sprite[] _sprites;
         
+        public static event Action<Block> OnCreated;
+        public static event Action<Block> OnDestroyed;
+        
 
         private int _hits;
 
@@ -26,12 +30,22 @@ namespace Arkanoid.Game
 
         #region Unity lifecycle
 
+        private void Awake()
+        {
+            OnCreated?.Invoke(this);
+        }
+
         private void Start()
         {
             if (_isInvisible)
             {
                 _spriteRenderer.SetAlpha(0);
             }
+        }
+        
+        private void OnDestroy()
+        {
+            OnDestroyed?.Invoke(this);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -42,6 +56,13 @@ namespace Arkanoid.Game
             }
 
             ApplyHit();
+        }
+        
+        protected virtual void OnDestroyedActions() { }
+        
+        public void ForceDestroy()
+        {
+            PerformDestroyActions();
         }
 
         #endregion
@@ -83,6 +104,7 @@ namespace Arkanoid.Game
             GameService.Instance.ChangeScore(_score);
             Destroy(gameObject);
             PickUpService.Instance.CreatePickUp(transform.position);
+            OnDestroyedActions();
         }
 
         #endregion

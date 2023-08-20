@@ -23,7 +23,11 @@ namespace Arkanoid
             Instance = gameObject.GetComponent<T>();
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
+            
+            OnAwake();
         }
+        
+        protected virtual void OnAwake() { }
 
         #endregion
     }

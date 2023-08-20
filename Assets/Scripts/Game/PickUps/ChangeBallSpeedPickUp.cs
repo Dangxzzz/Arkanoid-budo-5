@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Arkanoid.Services;
 using UnityEngine;
 
@@ -16,13 +17,11 @@ namespace Arkanoid.Game.PickUps
         protected override void PerformActions()
         {
             base.PerformActions();
-            Ball[] ballsInGame = LevelService.Instance.GetAllBalls();
-            for (int i = 0; i < ballsInGame.Length; i++)
+            List<Ball> allBalls = LevelService.Instance.Balls;
+            for (int i = 0; i < allBalls.Count; i++)
             {
-                ballsInGame[i].ChangeSpeed(_speedMultiplier);
+                allBalls[i].ChangeSpeed(_speedMultiplier);
             }
-
-         
         }
 
         #endregion

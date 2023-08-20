@@ -90,7 +90,6 @@ namespace Arkanoid.Services
         private void SetInitHealth()
         {
             Health = _startHP;
-            Debug.Log($"GameService startHP{Health}");
             OnHPChanged?.Invoke(Health);
         }
 

@@ -1,4 +1,7 @@
+using System;
+using Arkanoid.Services;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Arkanoid.Game
 {
@@ -6,18 +9,24 @@ namespace Arkanoid.Game
     {
         #region Variables
 
+        [SerializeField] private Platform _platform;
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private float _constantSpeed;
+        [SerializeField] private float _maxScaleBall = 2.5f;
+        [SerializeField] private float _minScaleBall = 0.45f;
+        [SerializeField] private float _maxSpeedBall = 18;
+        [SerializeField] private float _minSpeedBall = 4;
 
         private bool _isStarted;
         private Vector3 _offset;
         private readonly int _offsetY = 1;
-        [SerializeField] private float _maxScaleBall=2.5f;
-        [SerializeField] private float _minScaleBall=0.45f;
-        [SerializeField] private float _maxSpeedBall=18;
-        [SerializeField] private float _minSpeedBall=4;
 
-        private Platform _platform;
+        #endregion
+
+        #region Events
+
+        public static event Action<Ball> OnCreated;
+        public static event Action<Ball> OnDestroyed;
 
         #endregion
 
@@ -25,12 +34,19 @@ namespace Arkanoid.Game
 
         private void Awake()
         {
-            _platform = FindObjectOfType<Platform>();
+            _offset.y = _offsetY;
+
+            PerformStartActions();
+
+            OnCreated?.Invoke(this);
         }
 
         private void Start()
         {
-            _offset.y = _offsetY;
+            if (GameService.Instance.NeedAutoPlay)
+            {
+                StartBall();
+            }
         }
 
         private void Update()
@@ -48,6 +64,11 @@ namespace Arkanoid.Game
             }
         }
 
+        private void OnDestroy()
+        {
+            OnDestroyed?.Invoke(this);
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
@@ -58,30 +79,48 @@ namespace Arkanoid.Game
 
         #region Public methods
 
-        public void ResetBall()
+        public void ChangeSize(float sizeMultiplier)
         {
-            _isStarted = false;
-            _rb.velocity = Vector2.zero;
+            Vector3 currentSize = transform.localScale;
+            if (currentSize.x >= _maxScaleBall || currentSize.x <= _minScaleBall)
+            {
+                return;
+            }
+
+            transform.localScale = currentSize * sizeMultiplier;
         }
 
         public void ChangeSpeed(float speedMultiplier)
         {
             Vector2 currentVelocity = _rb.velocity;
-            if (currentVelocity.magnitude >= _maxSpeedBall || currentVelocity.magnitude<=_minSpeedBall)
+            if (currentVelocity.magnitude >= _maxSpeedBall || currentVelocity.magnitude <= _minSpeedBall)
             {
                 return;
             }
+
             _rb.velocity = currentVelocity * speedMultiplier;
         }
 
-        public void ChangeSize(float sizeMultiplier)
+        public Ball Clone()
         {
-            Vector3 currentSize = transform.localScale;
-            if (currentSize.x >= _maxScaleBall || currentSize.x<=_minScaleBall)
-            {
-                return;
-            }
-            transform.localScale = currentSize*sizeMultiplier;
+            Ball clone = Instantiate(this, transform.position, Quaternion.identity);
+            clone._isStarted = _isStarted;
+            clone._offset = _offset;
+            clone._rb.velocity = _rb.velocity;
+            return clone;
+        }
+        
+        public void RandomizeDirection()
+        {
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+            float currentSpeed = _rb.velocity.magnitude;
+            _rb.velocity = randomDirection * currentSpeed;
+        }
+
+        public void ResetBall()
+        {
+            MoveWithPad();
+            PerformStartActions();
         }
 
         public void StartBall()
@@ -101,6 +140,12 @@ namespace Arkanoid.Game
             Vector3 platformPosition = _platform.transform.position;
             platformPosition += _offset;
             transform.position = platformPosition;
+        }
+
+        private void PerformStartActions()
+        {
+            _isStarted = false;
+            _rb.velocity = Vector2.zero;
         }
 
         #endregion

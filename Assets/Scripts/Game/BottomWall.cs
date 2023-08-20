@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Arkanoid.Services;
 using UnityEngine;
 
@@ -8,17 +9,12 @@ namespace Arkanoid.Game
     {
         #region Unity lifecycle
 
-        private void Awake()
-        {
-            GetComponent<Collider2D>().isTrigger = true;
-        }
-
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.CompareTag(Tags.Ball))
             {
-                Ball[] allBalls = LevelService.Instance.GetAllBalls();
-                bool isLast = allBalls.Length == 1;
+                List<Ball> allBalls = LevelService.Instance.Balls;
+                bool isLast = allBalls.Count == 1;
                 if (isLast)
                 {
                     GameService.Instance.ChangeHP(-1);

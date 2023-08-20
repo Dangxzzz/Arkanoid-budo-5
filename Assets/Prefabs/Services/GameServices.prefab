@@ -66,8 +66,10 @@ MonoBehaviour:
     SpawnWeight: 10
   - PickUpPrefab: {fileID: 2622656421353346063, guid: 090a679906b82a74097a30a691d86f1d, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 0}
-    SpawnWeight: 0
+  - PickUpPrefab: {fileID: 6526721892291818254, guid: 5ed773391bd1c7a4d9cf1964d6c4e04f, type: 3}
+    SpawnWeight: 10
+  - PickUpPrefab: {fileID: 3955931374254407614, guid: 367050d74aecd19488147ed7ea3d9f69, type: 3}
+    SpawnWeight: 10
 --- !u!1 &4849463906309357219
 GameObject:
   m_ObjectHideFlags: 0

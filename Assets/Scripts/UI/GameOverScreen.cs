@@ -21,11 +21,11 @@ namespace Arkanoid.Ui
         private void Awake()
         {
             _contentObject.SetActive(false);
-            _retryButton.onClick.AddListener(OnRetryButtonClick);
         }
 
         private void Start()
         {
+            _retryButton.onClick.AddListener(OnRetryButtonClick);
             GameService.Instance.OnHPOver += OnHpOver;
         }
 

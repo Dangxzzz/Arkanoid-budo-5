@@ -1,11 +1,12 @@
 using Arkanoid.Services;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Arkanoid.Game.PickUps
 {
     public class DoublingBallPickUp : PickUp
     {
-        [SerializeField] private int _newBallCount;
+       [SerializeField] private int _clonesCount;
         
         #region Protected methods
 
@@ -13,10 +14,16 @@ namespace Arkanoid.Game.PickUps
         {
             base.PerformActions();
 
-            Ball ballInGame = FindObjectOfType<Ball>();
-            Ball newBall = Instantiate(ballInGame, ballInGame.transform.position, Quaternion.identity);
-            newBall.transform.localScale = ballInGame.transform.localScale;
-            newBall.StartBall();
+            int ballsCount = LevelService.Instance.Balls.Count;
+            for (int i = 0; i < ballsCount; i++)
+            {
+                Ball ball = LevelService.Instance.Balls[i];
+                for (int j = 0; j < _clonesCount; j++)
+                {
+                    Ball clone = ball.Clone();
+                    clone.RandomizeDirection();
+                }
+            }
         }
 
         #endregion
