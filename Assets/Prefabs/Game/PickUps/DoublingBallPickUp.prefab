@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5262382466928132508}
   - component: {fileID: 3525095718222729993}
   - component: {fileID: 218674404097904262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoublingBallPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

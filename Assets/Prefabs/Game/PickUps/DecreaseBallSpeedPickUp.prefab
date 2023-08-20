@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6811332149975763482}
   - component: {fileID: 6067333552033407097}
   - component: {fileID: 2054711036080998776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DecreaseBallSpeedPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

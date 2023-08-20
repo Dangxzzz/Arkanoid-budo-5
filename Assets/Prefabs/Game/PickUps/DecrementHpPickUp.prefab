@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1139209138344075890}
   - component: {fileID: 8182222019055457026}
   - component: {fileID: 1577971444918732100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DecrementHpPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

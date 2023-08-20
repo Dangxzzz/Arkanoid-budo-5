@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5269931603188364290}
   - component: {fileID: 2259763661546879501}
   - component: {fileID: 3876278965124952412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IncreaseHpPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

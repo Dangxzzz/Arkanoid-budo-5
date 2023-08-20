@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4758263772917672800}
   - component: {fileID: 1512298115652615249}
   - component: {fileID: 348158253400173915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IncreasePlatformSizePickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
