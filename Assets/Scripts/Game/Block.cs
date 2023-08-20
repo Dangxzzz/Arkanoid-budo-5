@@ -18,11 +18,7 @@ namespace Arkanoid.Game
 
         [Header("Visual")]
         [SerializeField] private Sprite[] _sprites;
-
-        [Header("Pick Up")]
-        [Range(0, 100)]
-        [SerializeField] private int _pickUpDropChance = 50;
-        [SerializeField] private PickUp[] _pickUpPrefabs;
+        
 
         private int _hits;
 
@@ -81,26 +77,12 @@ namespace Arkanoid.Game
 
             return false;
         }
-
-        private void CreatePickUp()
-        {
-            if (_pickUpPrefabs.Length == 0)
-            {
-                return;
-            }
-            int chance = Random.Range(0, 101);
-            if (_pickUpDropChance >= chance)
-            {
-                int chanceOfPickUp = Random.Range(0, _pickUpPrefabs.Length);
-                Instantiate(_pickUpPrefabs[chanceOfPickUp], transform.position, Quaternion.identity);
-            }
-        }
-
+        
         private void PerformDestroyActions()
         {
             GameService.Instance.ChangeScore(_score);
             Destroy(gameObject);
-            CreatePickUp();
+            PickUpService.Instance.CreatePickUp(transform.position);
         }
 
         #endregion
