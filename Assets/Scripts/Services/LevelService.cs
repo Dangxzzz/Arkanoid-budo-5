@@ -50,7 +50,6 @@ namespace Arkanoid.Services
 
             Block.OnCreated += OnBlockCreated;
             Block.OnDestroyed += OnBlockDestroyed;
-            
         }
 
         #endregion
@@ -70,6 +69,7 @@ namespace Arkanoid.Services
         private void OnBlockCreated(Block block)
         {
             _blocks.Add(block);
+            Debug.Log($"Count blocks{_blocks.Count}");
         }
 
         private void OnBlockDestroyed(Block block)

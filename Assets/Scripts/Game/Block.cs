@@ -32,7 +32,7 @@ namespace Arkanoid.Game
 
         private void Awake()
         {
-            OnCreated?.Invoke(this);
+            // OnCreated?.Invoke(this);
         }
 
         private void Start()
@@ -41,6 +41,7 @@ namespace Arkanoid.Game
             {
                 _spriteRenderer.SetAlpha(0);
             }
+            OnCreated?.Invoke(this);
         }
         
         private void OnDestroy()

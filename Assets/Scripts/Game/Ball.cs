@@ -38,11 +38,12 @@ namespace Arkanoid.Game
 
             PerformStartActions();
 
-            OnCreated?.Invoke(this);
+            // OnCreated?.Invoke(this);
         }
 
         private void Start()
         {
+            OnCreated?.Invoke(this);
             if (GameService.Instance.NeedAutoPlay)
             {
                 StartBall();
