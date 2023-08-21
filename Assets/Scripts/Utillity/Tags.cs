@@ -7,6 +7,7 @@ namespace Arkanoid
         public const string Ball = "Ball";
         public const string BallContainer = "BallContainer";
         public const string Platform = "Platform";
+        public const string Block = "Block";
 
         #endregion
     }

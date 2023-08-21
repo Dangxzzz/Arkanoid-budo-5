@@ -9,17 +9,27 @@ namespace Arkanoid.Game
     {
         #region Variables
 
+        [Header("Components")]
+        [SerializeField] private SpriteRenderer _ballSpriteRenderer;
+        [SerializeField] private TrailRenderer _ballTrailRenderer;
         [SerializeField] private Platform _platform;
         [SerializeField] private Rigidbody2D _rb;
+
+        [Header("Configs")]
         [SerializeField] private float _constantSpeed;
         [SerializeField] private float _maxScaleBall = 2.5f;
         [SerializeField] private float _minScaleBall = 0.45f;
         [SerializeField] private float _maxSpeedBall = 18;
         [SerializeField] private float _minSpeedBall = 4;
+        private LayerMask _blockMask;
+        private float _explosiveRadius;
+        private bool _isExplosive;
 
         private bool _isStarted;
         private Vector3 _offset;
         private readonly int _offsetY = 1;
+        private Sprite _startBallSprite;
+        private Color _startBallTrailColor;
 
         #endregion
 
@@ -32,13 +42,21 @@ namespace Arkanoid.Game
 
         #region Unity lifecycle
 
+        public bool IsStarted
+        {
+            set
+            {
+                _isStarted = value;
+            }
+        }
+        
         private void Awake()
         {
+            _startBallSprite = _ballSpriteRenderer.sprite;
+            _startBallTrailColor = _ballTrailRenderer.startColor;
             _offset.y = _offsetY;
 
             PerformStartActions();
-
-            // OnCreated?.Invoke(this);
         }
 
         private void Start()
@@ -70,6 +88,28 @@ namespace Arkanoid.Game
             OnDestroyed?.Invoke(this);
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (_isExplosive)
+            {
+                if (other.gameObject.CompareTag(Tags.Block))
+                {
+                    Collider2D[] colliders =
+                        Physics2D.OverlapCircleAll(transform.position, _explosiveRadius, _blockMask);
+
+                    foreach (Collider2D col in colliders)
+                    {
+                        if (col.TryGetComponent(out Block block))
+                        {
+                            block.ForceDestroy();
+                        }
+                    }
+                    SetStartBallVisual();
+                    _isExplosive = false;
+                }
+            }
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
@@ -79,6 +119,12 @@ namespace Arkanoid.Game
         #endregion
 
         #region Public methods
+
+        // public void ChangeBallVisual(Sprite newSprite, Color newColor)
+        // {
+        //     ChangeSprite(newSprite);
+        //     ChangeTrail(newColor);
+        // }
 
         public void ChangeSize(float sizeMultiplier)
         {
@@ -102,6 +148,16 @@ namespace Arkanoid.Game
             _rb.velocity = currentVelocity * speedMultiplier;
         }
 
+        public void ChangeSprite(Sprite newSprite)
+        {
+            _ballSpriteRenderer.sprite = newSprite;
+        }
+
+        public void ChangeTrail(Color newColor)
+        {
+            _ballTrailRenderer.startColor = newColor;
+        }
+
         public Ball Clone()
         {
             Ball clone = Instantiate(this, transform.position, Quaternion.identity);
@@ -110,7 +166,21 @@ namespace Arkanoid.Game
             clone._rb.velocity = _rb.velocity;
             return clone;
         }
-        
+
+        public void DisableExplosiveMode()
+        {
+            _isExplosive = false;
+        }
+
+        public void EnableExplosiveMode(float radius, LayerMask blockMask, Sprite explosiveBallSprite, Color explosiveBallTrailColor)
+        {
+            _isExplosive = true;
+            _explosiveRadius = radius;
+            _blockMask = blockMask;
+            ChangeSprite(explosiveBallSprite);
+            ChangeTrail(explosiveBallTrailColor);
+        }
+
         public void RandomizeDirection()
         {
             Vector2 randomDirection = Random.insideUnitCircle.normalized;
@@ -122,6 +192,12 @@ namespace Arkanoid.Game
         {
             MoveWithPad();
             PerformStartActions();
+        }
+
+        public void SetStartBallVisual()
+        {
+           ChangeSprite(_startBallSprite);
+           ChangeTrail(_startBallTrailColor);
         }
 
         public void StartBall()

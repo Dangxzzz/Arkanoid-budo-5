@@ -20,6 +20,7 @@ namespace Arkanoid.UI
 
         private void Start()
         {
+            Debug.Log(GameService.Instance.Health);
             CreateHealth();
             UpdateHealthPoint(GameService.Instance.Health);
             GameService.Instance.OnHPChanged += UpdateHealthPoint;

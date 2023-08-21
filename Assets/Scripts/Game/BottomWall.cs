@@ -17,6 +17,8 @@ namespace Arkanoid.Game
                 bool isLast = allBalls.Count == 1;
                 if (isLast)
                 {
+                    allBalls[0].SetStartBallVisual();
+                    allBalls[0].DisableExplosiveMode();
                     GameService.Instance.ChangeHP(-1);
                     GameService.Instance.ResetBall();
                 }

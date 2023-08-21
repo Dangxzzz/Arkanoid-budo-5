@@ -1,6 +1,7 @@
 using System;
-using Arkanoid.Game;
 using UnityEngine;
+using System.Collections.Generic;
+using Arkanoid.Game;
 
 namespace Arkanoid.Services
 {
@@ -64,13 +65,27 @@ namespace Arkanoid.Services
 
         public void ResetBall()
         {
-            FindObjectOfType<Ball>().ResetBall();
+            List<Ball> allBalls = LevelService.Instance.Balls;
+            for (int i = 0; i < allBalls.Count; i++)
+            {
+                allBalls[i].ResetBall();
+            }
         }
 
         public void SetStartParameters()
         {
             SetInitHealth();
             Score = 0;
+        }
+
+        #endregion
+
+        #region Protected methods
+
+        protected override void OnAwake()
+        {
+            base.OnAwake();
+            SetInitHealth();
         }
 
         #endregion

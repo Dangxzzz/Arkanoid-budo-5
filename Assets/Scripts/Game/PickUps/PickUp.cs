@@ -1,3 +1,4 @@
+using Arkanoid.Services;
 using UnityEngine;
 
 namespace Arkanoid.Game.PickUps
@@ -7,6 +8,8 @@ namespace Arkanoid.Game.PickUps
     {
         #region Unity lifecycle
 
+        [SerializeField] private int _scoreToChange;
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag(Tags.Platform))
@@ -22,6 +25,7 @@ namespace Arkanoid.Game.PickUps
 
         protected virtual void PerformActions()
         {
+            GameService.Instance.ChangeScore(_scoreToChange);
         }
 
         #endregion

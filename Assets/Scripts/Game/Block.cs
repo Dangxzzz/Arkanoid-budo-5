@@ -30,11 +30,6 @@ namespace Arkanoid.Game
 
         #region Unity lifecycle
 
-        private void Awake()
-        {
-            // OnCreated?.Invoke(this);
-        }
-
         private void Start()
         {
             if (_isInvisible)
