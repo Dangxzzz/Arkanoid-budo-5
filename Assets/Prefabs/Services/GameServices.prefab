@@ -56,20 +56,22 @@ MonoBehaviour:
     SpawnWeight: 10
   - PickUpPrefab: {fileID: 6760171811492573447, guid: fd2fd98c4bf2b9a4797e67b52cfdc42c, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 3885717264831525281, guid: 46303ce1d2104794b9a12cb35995e60b, type: 3}
+  - PickUpPrefab: {fileID: 3810727006814253975, guid: d5b4080cec0415d4fb09e56942947a8f, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 9048886769428240704, guid: d5b4080cec0415d4fb09e56942947a8f, type: 3}
+  - PickUpPrefab: {fileID: -5278680622673740975, guid: 46303ce1d2104794b9a12cb35995e60b, type: 3}
     SpawnWeight: 10
   - PickUpPrefab: {fileID: 1368117641562354036, guid: 2c06edc5a6a03e547817e9b5c4524f9a, type: 3}
     SpawnWeight: 10
   - PickUpPrefab: {fileID: 5446924561123841186, guid: 5e6fb58cde402fb4a95ea46ed0771755, type: 3}
     SpawnWeight: 10
   - PickUpPrefab: {fileID: 2622656421353346063, guid: 090a679906b82a74097a30a691d86f1d, type: 3}
-    SpawnWeight: 10
+    SpawnWeight: 100
   - PickUpPrefab: {fileID: 6526721892291818254, guid: 5ed773391bd1c7a4d9cf1964d6c4e04f, type: 3}
     SpawnWeight: 10
   - PickUpPrefab: {fileID: 3955931374254407614, guid: 367050d74aecd19488147ed7ea3d9f69, type: 3}
     SpawnWeight: 10
+  - PickUpPrefab: {fileID: 1836117775218946512, guid: 4f40235d683455f48a27e983bad23eb1, type: 3}
+    SpawnWeight: 100
 --- !u!1 &4849463906309357219
 GameObject:
   m_ObjectHideFlags: 0

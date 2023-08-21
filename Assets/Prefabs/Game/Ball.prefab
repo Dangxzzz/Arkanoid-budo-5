@@ -193,6 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8c7d87c7440c84ea266e26d0c37287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ballSpriteRenderer: {fileID: 5218605412493887405}
+  _ballTrailRenderer: {fileID: 1166527060014374303}
   _platform: {fileID: 0}
   _rb: {fileID: 5267997810271629729}
   _constantSpeed: 10

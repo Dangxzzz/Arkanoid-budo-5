@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469a675fa670b544ebdae1d6d51e1369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scoreToChange: 10
+  _gluePlatformSprite: {fileID: 21300000, guid: 655d5c61fd3321f4081b890245eb0e52, type: 3}
+  duration: 15
+  _gluePlatformColor: {r: 0.65882355, g: 0.8396226, b: 0.4150587, a: 0.8392157}
 --- !u!212 &6517137461342660294
 SpriteRenderer:
   m_ObjectHideFlags: 0
