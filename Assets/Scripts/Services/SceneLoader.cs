@@ -6,6 +6,11 @@ namespace Arkanoid.Services
     {
         #region Public methods
 
+        public void LoadChosenScene(int chose)
+        {
+            SceneManager.LoadScene(chose);
+        }
+
         public void LoadNextGameScene()
         {
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

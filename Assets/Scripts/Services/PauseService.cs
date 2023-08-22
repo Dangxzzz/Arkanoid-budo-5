@@ -13,7 +13,7 @@ namespace Arkanoid.Services
 
         #region Properties
 
-        public bool IsPaused { get; private set; }
+        public bool IsPaused { get; set; }
 
         #endregion
 

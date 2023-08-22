@@ -1,4 +1,3 @@
-using Arkanoid.Services;
 using UnityEngine;
 
 namespace Arkanoid.Game.PickUps
@@ -16,7 +15,7 @@ namespace Arkanoid.Game.PickUps
         protected override void PerformActions()
         {
             base.PerformActions();
-            
+
             Platform platformInGame = FindObjectOfType<Platform>();
             platformInGame.ChangePlatformSize(_sizeMultiplier);
         }

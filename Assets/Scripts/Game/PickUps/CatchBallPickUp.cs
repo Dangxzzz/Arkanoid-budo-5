@@ -21,8 +21,7 @@ namespace Arkanoid.Game.PickUps
         {
             base.PerformActions();
             _platform = FindObjectOfType<Platform>();
-            _platform.EnableGlueMode(duration, _gluePlatformSprite,_gluePlatformColor);
-            Debug.Log("Cathced");
+            _platform.EnableGlueMode(duration, _gluePlatformSprite, _gluePlatformColor);
         }
 
         #endregion

@@ -10,6 +10,7 @@ namespace Arkanoid.UI
 
         [SerializeField] private GameObject _contentObject;
         [SerializeField] private Button _continueButton;
+        [SerializeField] private Button _mainMenuButton;
 
         #endregion
 
@@ -19,6 +20,7 @@ namespace Arkanoid.UI
         {
             _contentObject.SetActive(false);
             _continueButton.onClick.AddListener(OnContinueButtonClicked);
+            _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
         }
 
         private void Start()
@@ -38,6 +40,12 @@ namespace Arkanoid.UI
         private void OnContinueButtonClicked()
         {
             PauseService.Instance.TogglePause();
+        }
+
+        private void OnMainMenuButtonClick()
+        {
+            PauseService.Instance.TogglePause();
+            SceneLoader.Instance.LoadChosenScene(0);
         }
 
         private void OnPaused(bool isPaused)

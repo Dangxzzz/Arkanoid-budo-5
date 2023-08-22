@@ -20,11 +20,9 @@ namespace Arkanoid.UI
 
         private void Start()
         {
-            Debug.Log(GameService.Instance.Health);
             CreateHealth();
             UpdateHealthPoint(GameService.Instance.Health);
             GameService.Instance.OnHPChanged += UpdateHealthPoint;
-
         }
 
         private void Update()
@@ -67,8 +65,9 @@ namespace Arkanoid.UI
         {
             if (_healthPoints.Count < hp)
             {
-                AddHealth(_healthPoints.Count-hp);
+                AddHealth(_healthPoints.Count - hp);
             }
+
             for (int i = 0; i < _healthPoints.Count; i++)
             {
                 _healthPoints[i].gameObject.SetActive(hp > i);

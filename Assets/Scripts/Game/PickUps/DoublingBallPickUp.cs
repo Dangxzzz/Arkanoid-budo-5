@@ -1,13 +1,16 @@
 using Arkanoid.Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Arkanoid.Game.PickUps
 {
     public class DoublingBallPickUp : PickUp
     {
-       [SerializeField] private int _clonesCount;
-        
+        #region Variables
+
+        [SerializeField] private int _clonesCount;
+
+        #endregion
+
         #region Protected methods
 
         protected override void PerformActions()

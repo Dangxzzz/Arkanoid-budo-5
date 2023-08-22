@@ -5,8 +5,12 @@ namespace Arkanoid.Game.PickUps
 {
     public class IncreaseHpPickUp : PickUp
     {
+        #region Variables
+
         [SerializeField] private int _count;
-        
+
+        #endregion
+
         #region Protected methods
 
         protected override void PerformActions()

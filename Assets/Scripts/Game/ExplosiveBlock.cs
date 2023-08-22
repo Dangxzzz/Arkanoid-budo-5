@@ -1,3 +1,4 @@
+using Arkanoid.Services;
 using UnityEngine;
 
 namespace Arkanoid.Game
@@ -17,7 +18,7 @@ namespace Arkanoid.Game
         protected override void OnDestroyedActions()
         {
             base.OnDestroyedActions();
-            
+            SoundService.Instance.PlayExploseSound();
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _explosiveRadius, _blockMask);
 
             foreach (Collider2D col in colliders)

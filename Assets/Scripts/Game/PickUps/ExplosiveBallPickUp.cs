@@ -13,8 +13,7 @@ namespace Arkanoid.Game.PickUps
         [SerializeField] private float _explosiveRadius;
         [SerializeField] private LayerMask _blockMask;
         private List<Ball> _allBalls = new();
-        
-        
+
         #endregion
 
         #region Unity lifecycle
@@ -33,11 +32,11 @@ namespace Arkanoid.Game.PickUps
             base.PerformActions();
             for (int i = 0; i < _allBalls.Count; i++)
             {
-                _allBalls[i].EnableExplosiveMode(_explosiveRadius,_blockMask,_explosiveBallSprite, _explosiveBallTrailColor);
+                _allBalls[i].EnableExplosiveMode(_explosiveRadius, _blockMask, _explosiveBallSprite,
+                    _explosiveBallTrailColor);
             }
         }
 
         #endregion
-        
     }
 }

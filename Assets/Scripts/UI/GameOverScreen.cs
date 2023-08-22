@@ -13,6 +13,7 @@ namespace Arkanoid.Ui
         [SerializeField] private GameObject _contentObject;
         [SerializeField] private TextMeshProUGUI _scoreLabel;
         [SerializeField] private Button _retryButton;
+        [SerializeField] private Button _mainMenuButton;
 
         #endregion
 
@@ -25,6 +26,7 @@ namespace Arkanoid.Ui
 
         private void Start()
         {
+            _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
             _retryButton.onClick.AddListener(OnRetryButtonClick);
             GameService.Instance.OnHPOver += OnHpOver;
         }
@@ -40,16 +42,19 @@ namespace Arkanoid.Ui
 
         private void OnHpOver()
         {
-            Time.timeScale = 0;
+            PauseService.Instance.TogglePause();
             _contentObject.SetActive(true);
             _scoreLabel.text = "Score: " + Convert.ToString(GameService.Instance.Score);
         }
 
+        private void OnMainMenuButtonClick()
+        {
+            SceneLoader.Instance.LoadChosenScene(0);
+        }
+
         private void OnRetryButtonClick()
         {
-            Time.timeScale = 1;
-            SceneLoader.Instance.ReloadCurrentScene();
-            GameService.Instance.SetStartParameters();
+            GameService.Instance.RestartLevel();
         }
 
         #endregion

@@ -69,7 +69,6 @@ namespace Arkanoid.Services
         private void OnBlockCreated(Block block)
         {
             _blocks.Add(block);
-            Debug.Log($"Count blocks{_blocks.Count}");
         }
 
         private void OnBlockDestroyed(Block block)
@@ -78,7 +77,16 @@ namespace Arkanoid.Services
 
             if (_blocks.Count == 0)
             {
-                OnAllBlocksDestroyed?.Invoke();
+                if (GameService.Instance.Health != 0)
+                {
+                    Debug.Log("Something");
+                    OnAllBlocksDestroyed?.Invoke();
+                }
+                else
+                {
+                    GameService.Instance.SetStartParameters();
+                    Debug.Log("Nothing");
+                }
             }
         }
 

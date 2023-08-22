@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
 using Arkanoid.Game;
+using UnityEngine;
 
 namespace Arkanoid.Services
 {
@@ -54,6 +54,7 @@ namespace Arkanoid.Services
             OnHPChanged?.Invoke(Health);
             if (Health <= 0)
             {
+                SoundService.Instance.PlayLoseSound();
                 OnHPOver?.Invoke();
             }
         }
@@ -61,6 +62,11 @@ namespace Arkanoid.Services
         public void ChangeScore(int value)
         {
             Score = Mathf.Max(0, Score + value);
+        }
+
+        public void LoadNextLevel()
+        {
+            SceneLoader.Instance.LoadNextGameScene();
         }
 
         public void ResetBall()
@@ -72,10 +78,16 @@ namespace Arkanoid.Services
             }
         }
 
+        public void RestartLevel()
+        {
+            SceneLoader.Instance.ReloadCurrentScene();
+        }
+
         public void SetStartParameters()
         {
             SetInitHealth();
             Score = 0;
+            PauseService.Instance.TogglePause();
         }
 
         #endregion
@@ -91,11 +103,6 @@ namespace Arkanoid.Services
         #endregion
 
         #region Private methods
-
-        private void LoadNextLevel()
-        {
-            SceneLoader.Instance.LoadNextGameScene();
-        }
 
         private void OnAllBlocksDestroyed()
         {

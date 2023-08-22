@@ -40,16 +40,22 @@ namespace Arkanoid.Game
 
         #endregion
 
-        #region Unity lifecycle
+        #region Properties
 
         public bool IsStarted
         {
-            set
-            {
-                _isStarted = value;
-            }
+            set => _isStarted = value;
         }
-        
+
+        public float OffsetX
+        {
+            set => _offset.x = value;
+        }
+
+        #endregion
+
+        #region Unity lifecycle
+
         private void Awake()
         {
             _startBallSprite = _ballSpriteRenderer.sprite;
@@ -80,6 +86,7 @@ namespace Arkanoid.Game
             if (Input.GetMouseButtonDown(0))
             {
                 StartBall();
+                _platform.CatchBalls.Clear();
             }
         }
 
@@ -94,6 +101,7 @@ namespace Arkanoid.Game
             {
                 if (other.gameObject.CompareTag(Tags.Block))
                 {
+                    SoundService.Instance.PlayExploseSound();
                     Collider2D[] colliders =
                         Physics2D.OverlapCircleAll(transform.position, _explosiveRadius, _blockMask);
 
@@ -104,6 +112,7 @@ namespace Arkanoid.Game
                             block.ForceDestroy();
                         }
                     }
+
                     SetStartBallVisual();
                     _isExplosive = false;
                 }
@@ -119,12 +128,6 @@ namespace Arkanoid.Game
         #endregion
 
         #region Public methods
-
-        // public void ChangeBallVisual(Sprite newSprite, Color newColor)
-        // {
-        //     ChangeSprite(newSprite);
-        //     ChangeTrail(newColor);
-        // }
 
         public void ChangeSize(float sizeMultiplier)
         {
@@ -172,7 +175,8 @@ namespace Arkanoid.Game
             _isExplosive = false;
         }
 
-        public void EnableExplosiveMode(float radius, LayerMask blockMask, Sprite explosiveBallSprite, Color explosiveBallTrailColor)
+        public void EnableExplosiveMode(float radius, LayerMask blockMask, Sprite explosiveBallSprite,
+            Color explosiveBallTrailColor)
         {
             _isExplosive = true;
             _explosiveRadius = radius;
@@ -190,14 +194,19 @@ namespace Arkanoid.Game
 
         public void ResetBall()
         {
+            for (int i = 0; i < LevelService.Instance.Balls.Count; i++)
+            {
+                LevelService.Instance.Balls[i].OffsetX = 0;
+            }
+
             MoveWithPad();
             PerformStartActions();
         }
 
         public void SetStartBallVisual()
         {
-           ChangeSprite(_startBallSprite);
-           ChangeTrail(_startBallTrailColor);
+            ChangeSprite(_startBallSprite);
+            ChangeTrail(_startBallTrailColor);
         }
 
         public void StartBall()
