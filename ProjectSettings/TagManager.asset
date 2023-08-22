@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - Ball
   - Block
+  - Slider
+  - BackgroundAudio
   layers:
   - Default
   - TransparentFX
