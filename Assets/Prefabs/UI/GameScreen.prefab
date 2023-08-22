@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _contentObject: {fileID: 8034099932432534384}
   _continueButton: {fileID: 3624660583911963379}
+  _mainMenuButton: {fileID: 7138115765675451034}
 --- !u!1 &4354174364604410257
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1341264095000795358
 RectTransform:
   m_ObjectHideFlags: 0
