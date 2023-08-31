@@ -46,32 +46,89 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickUpDropChance: 50
   _pickUps:
-  - PickUpPrefab: {fileID: 7675054251206625322, guid: cf35c6c9f575b584a90a7fa744ef72b6, type: 3}
+  - Name: DecreaseBallSizePickUp:10
+    PickUpPrefab: {fileID: 7675054251206625322, guid: cf35c6c9f575b584a90a7fa744ef72b6, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 2315914039788176084, guid: ef46a57e57d90a54b8f54344c89f6fcc, type: 3}
+  - Name: IncreaseBallSizePickUp:10
+    PickUpPrefab: {fileID: 2315914039788176084, guid: ef46a57e57d90a54b8f54344c89f6fcc, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 992226728553499861, guid: 229a1facc2e740948866a51ef6e44967, type: 3}
+  - Name: DecreaseBallSpeedPickUp:10
+    PickUpPrefab: {fileID: 992226728553499861, guid: 229a1facc2e740948866a51ef6e44967, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 5820166443526499954, guid: 45243e6064bd3ac4fbce6c979ee48498, type: 3}
+  - Name: DecreasePlatformSizePickUp:10
+    PickUpPrefab: {fileID: 5820166443526499954, guid: 45243e6064bd3ac4fbce6c979ee48498, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 6760171811492573447, guid: fd2fd98c4bf2b9a4797e67b52cfdc42c, type: 3}
+  - Name: IncreasePlatformSizePickUp:10
+    PickUpPrefab: {fileID: 6760171811492573447, guid: fd2fd98c4bf2b9a4797e67b52cfdc42c, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 3810727006814253975, guid: d5b4080cec0415d4fb09e56942947a8f, type: 3}
+  - Name: IncreaseScorePickUp:10
+    PickUpPrefab: {fileID: 3810727006814253975, guid: d5b4080cec0415d4fb09e56942947a8f, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: -5278680622673740975, guid: 46303ce1d2104794b9a12cb35995e60b, type: 3}
+  - Name: DecreaseScorePickUp:10
+    PickUpPrefab: {fileID: -5278680622673740975, guid: 46303ce1d2104794b9a12cb35995e60b, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 1368117641562354036, guid: 2c06edc5a6a03e547817e9b5c4524f9a, type: 3}
+  - Name: DecrementHpPickUp:10
+    PickUpPrefab: {fileID: 1368117641562354036, guid: 2c06edc5a6a03e547817e9b5c4524f9a, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 5446924561123841186, guid: 5e6fb58cde402fb4a95ea46ed0771755, type: 3}
+  - Name: IncreaseHpPickUp:10
+    PickUpPrefab: {fileID: 5446924561123841186, guid: 5e6fb58cde402fb4a95ea46ed0771755, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 2622656421353346063, guid: 090a679906b82a74097a30a691d86f1d, type: 3}
-    SpawnWeight: 100
-  - PickUpPrefab: {fileID: 6526721892291818254, guid: 5ed773391bd1c7a4d9cf1964d6c4e04f, type: 3}
+  - Name: CatchBallPickUp:10
+    PickUpPrefab: {fileID: 2622656421353346063, guid: 090a679906b82a74097a30a691d86f1d, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 3955931374254407614, guid: 367050d74aecd19488147ed7ea3d9f69, type: 3}
+  - Name: DoublingBallPickUp:10
+    PickUpPrefab: {fileID: 6526721892291818254, guid: 5ed773391bd1c7a4d9cf1964d6c4e04f, type: 3}
     SpawnWeight: 10
-  - PickUpPrefab: {fileID: 1836117775218946512, guid: 4f40235d683455f48a27e983bad23eb1, type: 3}
-    SpawnWeight: 100
+  - Name: IncreaseBallSpeedPickUp:10
+    PickUpPrefab: {fileID: 3955931374254407614, guid: 367050d74aecd19488147ed7ea3d9f69, type: 3}
+    SpawnWeight: 10
+  - Name: ExplosiveBallPickUp:10
+    PickUpPrefab: {fileID: 1836117775218946512, guid: 4f40235d683455f48a27e983bad23eb1, type: 3}
+    SpawnWeight: 10
+--- !u!1 &1181716881780950183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 592721748628492059}
+  - component: {fileID: 450452407008246265}
+  m_Layer: 0
+  m_Name: GameStarter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &592721748628492059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181716881780950183}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 579159876885127203}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450452407008246265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181716881780950183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f113ae963c1dc42879c5bd4d54973c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4849463906309357219
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +207,7 @@ Transform:
   - {fileID: 19661829435431755}
   - {fileID: 6556752199924072558}
   - {fileID: 4189716085217969413}
+  - {fileID: 592721748628492059}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -332,11 +390,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2c3676b8e56d7429e4e6ab21be5451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockDestroy: {fileID: 8300000, guid: 0c2c2f7c75547c644bde737a6120a403, type: 3}
+  _blockDestroySound: {fileID: 8300000, guid: 0c2c2f7c75547c644bde737a6120a403, type: 3}
   _pickUpCatch: {fileID: 8300000, guid: 77cfd41a6b10f654b975ea23767a9671, type: 3}
   _loseGame: {fileID: 8300000, guid: 1192869949fdb3f4a95e3d09e73686bc, type: 3}
   _onCollision: {fileID: 8300000, guid: ae07ae14c9aa69249a6561b7b0189156, type: 3}
-  _explodeSound: {fileID: 8300000, guid: d6fbd06a59eb0714db7f1e3d0f268ce9, type: 3}
+  _explosionSound: {fileID: 8300000, guid: d6fbd06a59eb0714db7f1e3d0f268ce9, type: 3}
   _audioSource: {fileID: 4543575109891251583}
 --- !u!82 &4543575109891251583
 AudioSource:
@@ -348,11 +406,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 856f69a7c6d7dc64682576271644fec7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
