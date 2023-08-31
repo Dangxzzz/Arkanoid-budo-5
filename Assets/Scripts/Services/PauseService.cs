@@ -13,7 +13,7 @@ namespace Arkanoid.Services
 
         #region Properties
 
-        public bool IsPaused { get; set; }
+        public bool IsPaused { get; private set; }
 
         #endregion
 
@@ -31,11 +31,17 @@ namespace Arkanoid.Services
 
         #region Public methods
 
+        public void SetPause(bool isPaused)
+        {
+            IsPaused = isPaused;
+            Time.timeScale = IsPaused ? 0 : 1;
+            OnPaused?.Invoke(IsPaused);
+        }
+
         public void TogglePause()
         {
             IsPaused = !IsPaused;
-            Time.timeScale = IsPaused ? 0 : 1;
-            OnPaused?.Invoke(IsPaused);
+            SetPause(IsPaused);
         }
 
         #endregion

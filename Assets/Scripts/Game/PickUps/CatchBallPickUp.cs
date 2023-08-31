@@ -10,6 +10,7 @@ namespace Arkanoid.Game.PickUps
         [SerializeField] private Sprite _gluePlatformSprite;
         [SerializeField] private float duration;
         [SerializeField] private Color _gluePlatformColor;
+        [SerializeField] private GameObject _visualEffect;
 
         private Platform _platform;
 
@@ -20,6 +21,7 @@ namespace Arkanoid.Game.PickUps
         protected override void PerformActions()
         {
             base.PerformActions();
+            Instantiate(_visualEffect, transform.position, Quaternion.identity);
             _platform = FindObjectOfType<Platform>();
             _platform.EnableGlueMode(duration, _gluePlatformSprite, _gluePlatformColor);
         }

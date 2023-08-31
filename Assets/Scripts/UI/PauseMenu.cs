@@ -44,6 +44,7 @@ namespace Arkanoid.UI
 
         private void OnMainMenuButtonClick()
         {
+            GameService.Instance.SetIsGameOver();
             PauseService.Instance.TogglePause();
             SceneLoader.Instance.LoadChosenScene(0);
         }

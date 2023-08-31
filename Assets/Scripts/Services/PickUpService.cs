@@ -15,6 +15,23 @@ namespace Arkanoid.Services
 
         #endregion
 
+        #region Unity lifecycle
+
+        private void OnValidate()
+        {
+            if (_pickUps == null)
+            {
+                return;
+            }
+
+            foreach (PickUpSpawnData pickSpawnData in _pickUps)
+            {
+                pickSpawnData.OnValidate();
+            }
+        }
+
+        #endregion
+
         #region Public methods
 
         public void CreatePickUp(Vector3 position)
@@ -69,8 +86,26 @@ namespace Arkanoid.Services
         {
             #region Variables
 
+            [HideInInspector]
+            public string Name;
             public PickUp PickUpPrefab;
             public int SpawnWeight;
+
+            #endregion
+
+            #region Public methods
+
+            public void OnValidate()
+            {
+                if (PickUpPrefab == null)
+                {
+                    Name = "Empty";
+                }
+                else
+                {
+                    Name = $"{PickUpPrefab.name}:{SpawnWeight}";
+                }
+            }
 
             #endregion
         }

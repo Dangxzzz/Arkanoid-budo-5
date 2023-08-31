@@ -21,6 +21,7 @@ namespace Arkanoid.Game
         [SerializeField] private float _minScaleBall = 0.45f;
         [SerializeField] private float _maxSpeedBall = 18;
         [SerializeField] private float _minSpeedBall = 4;
+        [SerializeField] private GameObject _visualEffect;
         private LayerMask _blockMask;
         private float _explosiveRadius;
         private bool _isExplosive;
@@ -99,23 +100,28 @@ namespace Arkanoid.Game
         {
             if (_isExplosive)
             {
-                if (other.gameObject.CompareTag(Tags.Block))
+                Explosion(other);
+            }
+        }
+
+        private void Explosion(Collision2D other)
+        {
+            if (other.gameObject.CompareTag(Tags.Block))
+            {
+                SoundService.Instance.PlayExplosionSound();
+                Instantiate(_visualEffect, transform.position, Quaternion.identity);
+                Collider2D[] colliders =
+                    Physics2D.OverlapCircleAll(transform.position, _explosiveRadius, _blockMask);
+
+                foreach (Collider2D col in colliders)
                 {
-                    SoundService.Instance.PlayExploseSound();
-                    Collider2D[] colliders =
-                        Physics2D.OverlapCircleAll(transform.position, _explosiveRadius, _blockMask);
-
-                    foreach (Collider2D col in colliders)
+                    if (col.TryGetComponent(out Block block))
                     {
-                        if (col.TryGetComponent(out Block block))
-                        {
-                            block.ForceDestroy();
-                        }
+                        block.ForceDestroy();
                     }
-
-                    SetStartBallVisual();
-                    _isExplosive = false;
                 }
+                SetStartBallVisual();
+                _isExplosive = false;
             }
         }
 
@@ -167,6 +173,8 @@ namespace Arkanoid.Game
             clone._isStarted = _isStarted;
             clone._offset = _offset;
             clone._rb.velocity = _rb.velocity;
+            clone._explosiveRadius = _explosiveRadius;
+            clone._isExplosive = _isExplosive;
             return clone;
         }
 

@@ -18,6 +18,7 @@ namespace Arkanoid.Game
 
         [Header("Visual")]
         [SerializeField] private Sprite[] _sprites;
+        [SerializeField] private GameObject _visualEffect;
 
         private int _hits;
 
@@ -53,7 +54,7 @@ namespace Arkanoid.Game
             {
                 return;
             }
-
+            Instantiate(_visualEffect, transform.position, Quaternion.identity);
             SoundService.Instance.PlayCollisionSound();
 
             ApplyHit();
@@ -110,7 +111,7 @@ namespace Arkanoid.Game
 
         private void PerformDestroyActions()
         {
-            SoundService.Instance.PlayDestroyBlockSound();
+            SoundService.Instance.PlayBlockDestroySound();
             GameService.Instance.ChangeScore(_score);
             Destroy(gameObject);
             PickUpService.Instance.CreatePickUp(transform.position);

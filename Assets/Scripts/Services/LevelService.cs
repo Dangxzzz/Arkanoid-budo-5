@@ -77,16 +77,7 @@ namespace Arkanoid.Services
 
             if (_blocks.Count == 0)
             {
-                if (GameService.Instance.Health != 0)
-                {
-                    Debug.Log("Something");
-                    OnAllBlocksDestroyed?.Invoke();
-                }
-                else
-                {
-                    GameService.Instance.SetStartParameters();
-                    Debug.Log("Nothing");
-                }
+                OnAllBlocksDestroyed?.Invoke();
             }
         }
 

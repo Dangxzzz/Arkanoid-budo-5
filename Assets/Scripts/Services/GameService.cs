@@ -13,6 +13,7 @@ namespace Arkanoid.Services
         [SerializeField] private bool _needAutoPlay;
         [Header("Configs")]
         [SerializeField] private int _startHP = 3;
+        [SerializeField] private int _maxHP;
 
         #endregion
 
@@ -26,8 +27,12 @@ namespace Arkanoid.Services
         #region Properties
 
         public int Health { get; private set; }
+        public bool IsGameOver { get; private set; }
+
+        public int MaxHealth => _maxHP;
+
         public bool NeedAutoPlay => _needAutoPlay;
-        public int Score { get; set; }
+        public int Score { get; private set; }
 
         #endregion
 
@@ -36,12 +41,7 @@ namespace Arkanoid.Services
         private void Start()
         {
             SetInitHealth();
-            LevelService.Instance.OnAllBlocksDestroyed += OnAllBlocksDestroyed;
-        }
-
-        private void OnDestroy()
-        {
-            LevelService.Instance.OnAllBlocksDestroyed -= OnAllBlocksDestroyed;
+            // LevelService.Instance.OnAllBlocksDestroyed += OnAllBlocksDestroyed;
         }
 
         #endregion
@@ -55,6 +55,7 @@ namespace Arkanoid.Services
             if (Health <= 0)
             {
                 SoundService.Instance.PlayLoseSound();
+                IsGameOver = true;
                 OnHPOver?.Invoke();
             }
         }
@@ -83,11 +84,22 @@ namespace Arkanoid.Services
             SceneLoader.Instance.ReloadCurrentScene();
         }
 
+        public void SetIsGameOver()
+        {
+            IsGameOver = true;
+        }
+
         public void SetStartParameters()
         {
             SetInitHealth();
             Score = 0;
-            PauseService.Instance.TogglePause();
+            IsGameOver = false;
+            PauseService.Instance.SetPause(false);
+        }
+
+        public void StartLevel()
+        {
+            SetStartParameters();
         }
 
         #endregion
@@ -104,10 +116,15 @@ namespace Arkanoid.Services
 
         #region Private methods
 
-        private void OnAllBlocksDestroyed()
-        {
-            LoadNextLevel();
-        }
+        // private void OnAllBlocksDestroyed()
+        // {
+        //     if (IsGameOver)
+        //     {
+        //         return;
+        //     }
+        //
+        //     LoadNextLevel();
+        // }
 
         private void SetInitHealth()
         {
@@ -116,5 +133,10 @@ namespace Arkanoid.Services
         }
 
         #endregion
+
+        // private void OnDestroy()
+        // {
+        //     LevelService.Instance.OnAllBlocksDestroyed -= OnAllBlocksDestroyed;
+        // }
     }
 }

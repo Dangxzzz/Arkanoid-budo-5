@@ -16,8 +16,10 @@ namespace Arkanoid.Game.PickUps
         protected override void PerformActions()
         {
             base.PerformActions();
-
-            GameService.Instance.ChangeHP(_count);
+            if (GameService.Instance.Health < GameService.Instance.MaxHealth)
+            {
+                GameService.Instance.ChangeHP(_count);
+            }
         }
 
         #endregion

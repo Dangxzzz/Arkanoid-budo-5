@@ -65,7 +65,7 @@ namespace Arkanoid.UI
         {
             if (_healthPoints.Count < hp)
             {
-                AddHealth(_healthPoints.Count - hp);
+                AddHealth(hp - _healthPoints.Count);
             }
 
             for (int i = 0; i < _healthPoints.Count; i++)

@@ -8,6 +8,7 @@ namespace Arkanoid.Game.PickUps
         #region Variables
 
         [SerializeField] private int _clonesCount;
+        [SerializeField] private GameObject _visualEffect;
 
         #endregion
 
@@ -17,6 +18,7 @@ namespace Arkanoid.Game.PickUps
         {
             base.PerformActions();
 
+            Instantiate(_visualEffect, transform.position, Quaternion.identity);
             int ballsCount = LevelService.Instance.Balls.Count;
             for (int i = 0; i < ballsCount; i++)
             {

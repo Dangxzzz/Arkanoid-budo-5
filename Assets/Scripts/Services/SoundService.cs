@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Arkanoid.Services
 {
@@ -6,12 +7,17 @@ namespace Arkanoid.Services
     {
         #region Variables
 
-        [SerializeField] private AudioClip _blockDestroy;
+        private const string VolumePrefskey = "Sound/Volume";
+        
+        [FormerlySerializedAs("_BSound")]
+        [Header("Clips")]
+        [SerializeField] private AudioClip _blockDestroySound;
         [SerializeField] private AudioClip _pickUpCatch;
         [SerializeField] private AudioClip _loseGame;
         [SerializeField] private AudioClip _onCollision;
-        [SerializeField] private AudioClip _explodeSound;
-
+        [SerializeField] private AudioClip _explosionSound;
+        
+        [Header("AudioSourse")]
         [SerializeField] private AudioSource _audioSource;
 
         #endregion
@@ -20,7 +26,12 @@ namespace Arkanoid.Services
 
         public float SoundVolume
         {
-            set => _audioSource.volume = value;
+            get => _audioSource.volume;
+            set
+            {
+                _audioSource.volume = value;
+                PlayerPrefs.SetFloat(VolumePrefskey, value);
+            }
         }
 
         #endregion
@@ -29,27 +40,27 @@ namespace Arkanoid.Services
 
         public void PlayCollisionSound()
         {
-            _audioSource.PlayOneShot(_onCollision);
+            PlaySfx(_onCollision);
         }
 
-        public void PlayDestroyBlockSound()
+        public void PlayBlockDestroySound()
         {
-            _audioSource.PlayOneShot(_blockDestroy);
-        }
-
-        public void PlayExploseSound()
-        {
-            _audioSource.PlayOneShot(_explodeSound);
+            PlaySfx(_blockDestroySound);
         }
 
         public void PlayLoseSound()
         {
-            _audioSource.PlayOneShot(_loseGame);
+            PlaySfx(_loseGame);
+        }
+
+        public void PlayExplosionSound()
+        {
+            PlaySfx(_explosionSound);
         }
 
         public void PlayPickUpSound()
         {
-            _audioSource.PlayOneShot(_pickUpCatch);
+            PlaySfx(_pickUpCatch);
         }
 
         #endregion
@@ -60,6 +71,20 @@ namespace Arkanoid.Services
         {
             base.OnAwake();
             _audioSource = GetComponent<AudioSource>();
+
+            if (PlayerPrefs.HasKey(VolumePrefskey))
+            {
+                SoundVolume = PlayerPrefs.GetFloat(VolumePrefskey);
+            }
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void PlaySfx(AudioClip clip)
+        {
+            _audioSource.PlayOneShot(clip);
         }
 
         #endregion
