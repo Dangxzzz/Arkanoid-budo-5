@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6526721892291818254
 MonoBehaviour:
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreToChange: 10
   _clonesCount: 2
+  _visualEffect: {fileID: 5642766282230003982, guid: b5c8ca7ed10b61e499cce8ec3b6e2e4c, type: 3}
 --- !u!212 &5262382466928132508
 SpriteRenderer:
   m_ObjectHideFlags: 0

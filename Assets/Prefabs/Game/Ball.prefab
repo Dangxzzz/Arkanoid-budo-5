@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 5218605412493887405}
   - component: {fileID: 5267997810271629729}
   - component: {fileID: 3987512916326040662}
+  - component: {fileID: -1272319954566106143}
   m_Layer: 6
   m_Name: Ball
   m_TagString: Ball
@@ -179,7 +180,7 @@ Transform:
   m_Children:
   - {fileID: 6303090458088230171}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7335055087474600046
 MonoBehaviour:
@@ -202,6 +203,7 @@ MonoBehaviour:
   _minScaleBall: 0.45
   _maxSpeedBall: 18
   _minSpeedBall: 4
+  _visualEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
 --- !u!212 &5218605412493887405
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -316,3 +318,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &-1272319954566106143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226041549335271267}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d6fa6b6081d844daf6c84f2e5bbfe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camHeight: 0
+  _camWidth: 0
+  _isOnScreen: 1
+  _keepOnScreen: 1
+  _radius: 0

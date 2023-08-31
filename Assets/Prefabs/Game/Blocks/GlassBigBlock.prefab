@@ -52,6 +52,7 @@ MonoBehaviour:
   _isInvisible: 0
   _sprites:
   - {fileID: 21300000, guid: be7ff4a303211114ca500f2c1e06b6f5, type: 3}
+  _visualEffect: {fileID: 1429954232896169633, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
 --- !u!212 &2848075272595979949
 SpriteRenderer:
   m_ObjectHideFlags: 0

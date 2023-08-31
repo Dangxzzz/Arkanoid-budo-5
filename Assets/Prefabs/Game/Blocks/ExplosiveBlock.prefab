@@ -148,6 +148,7 @@ MonoBehaviour:
   _score: 0
   _isInvisible: 0
   _sprites: []
+  _visualEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
   _explosiveRadius: 1
   _blockMask:
     serializedVersion: 2
