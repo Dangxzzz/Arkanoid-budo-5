@@ -18,8 +18,12 @@ namespace Arkanoid.Sounds
 
         private void Awake()
         {
-            _sliderSoundVolume.value = SoundService.Instance.SoundVolume;
             _sliderSoundVolume.onValueChanged.AddListener(OnValueChanged);
+        }
+
+        private void Start()
+        {
+            _sliderSoundVolume.value = SoundService.Instance.SoundVolume;
         }
 
         private void OnDestroy()
